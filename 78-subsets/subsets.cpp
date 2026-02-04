@@ -1,21 +1,17 @@
 class Solution {
 public:
-    
-    void rec(vector<int>& nums, int i, vector<int>& curr, vector<vector<int>>& ans) {
-        if (i == nums.size()) {
-            ans.push_back(curr);
-            return;
-        }
-        curr.push_back(nums[i]);
-        rec(nums, i + 1, curr, ans);
-        curr.pop_back();
-        rec(nums, i + 1, curr, ans);
-    }
     vector<vector<int>> subsets(vector<int>& nums) {
+        int n = nums.size();
         vector<vector<int>> ans;
-        vector<int> curr;
-
-        rec(nums, 0, curr, ans);
+        for (int mask = 0; mask <= (1 << n) - 1; mask++) {
+            vector<int> subset;
+            for (int i = 0; i < n; i++) {
+                if (mask & (1 << i)) {
+                    subset.push_back(nums[i]);
+                }
+            }
+            ans.push_back(subset);
+        }
         return ans;
     }
 };
