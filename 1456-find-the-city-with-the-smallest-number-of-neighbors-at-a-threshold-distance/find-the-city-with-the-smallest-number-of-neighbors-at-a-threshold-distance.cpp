@@ -39,7 +39,7 @@ public:
                     count++;
             }
             
-            if(count <= minCount){   // important for tie
+            if(count <= minCount){   
                 minCount = count;
                 ans = i;
             }
